@@ -13,5 +13,5 @@ import container from './container'
   app.listen(PORT, () => {
     logger.info(`Server is running on port ${PORT}`)
   })
-  app.use(loadControllers('src/modules/**/controllers/*.controller.ts'))
+  app.use('/api/v1',loadControllers('src/modules/**/controllers/*.controller.ts'))
 })()
