@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "strict": false,
+    "esModuleInterop": true,
+    "experimentalDecorators": true, // Must be true to use decorators
+    "emitDecoratorMetadata": true, // Must be true to use decorators with TypeORM
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist",
+    "rootDir": "./src"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
