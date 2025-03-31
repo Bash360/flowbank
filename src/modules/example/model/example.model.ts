@@ -1,10 +1,10 @@
-import { model, Schema } from 'mongoose'
+import { model, Schema } from 'mongoose';
 
-import BaseModel, { applyBaseSchema } from '../../../common/base/base.model'
+import BaseModel, { applyBaseSchema } from '../../../common/base/base.model';
 
 export interface Example extends BaseModel {
-  userId: string
-  amount: number
+  userId: string;
+  amount: number;
 }
 
 const ExampleSchema = new Schema<Example>(
@@ -13,9 +13,9 @@ const ExampleSchema = new Schema<Example>(
     amount: { type: Number, required: true },
   },
   { timestamps: true }
-)
-applyBaseSchema(ExampleSchema)
+);
+applyBaseSchema(ExampleSchema);
 
-const ExampleModel = model<Example>('Example', ExampleSchema)
+const ExampleModel = model<Example>('Example', ExampleSchema);
 
-export default ExampleModel
+export default ExampleModel;

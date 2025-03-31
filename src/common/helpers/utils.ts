@@ -1,9 +1,9 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
 class Utils {
   static isValidObjectId(id: string): boolean {
-    return mongoose.Types.ObjectId.isValid(id)
+    return mongoose.Types.ObjectId.isValid(id);
   }
 }
 
-export default Utils
+export default Utils;

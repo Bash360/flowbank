@@ -1,51 +1,51 @@
-import { ClientSession, Model } from 'mongoose'
-import { DatabaseService } from '../../database/database.service'
-import BaseModel from './base.model'
+import { ClientSession, Model } from 'mongoose';
+import { DatabaseService } from '../../database/database.service';
+import BaseModel from './base.model';
 
 abstract class BaseRepository<T extends BaseModel> {
-  protected model: Model<T>
+  protected model: Model<T>;
 
   constructor(
     model: Model<T>,
     private readonly dbService: DatabaseService
   ) {
-    this.model = model
+    this.model = model;
   }
 
   async findAll(): Promise<T[]> {
-    return await this.model.find()
+    return await this.model.find();
   }
 
   async findById(id: string): Promise<T | null> {
-    return await this.model.findById(id)
+    return await this.model.findById(id);
   }
 
   async create(data: Partial<T>): Promise<T> {
-    return await this.model.create(data)
+    return await this.model.create(data);
   }
 
   async update(id: string, data: Partial<T>): Promise<T | null> {
-    return await this.model.findByIdAndUpdate(id, data, { new: true })
+    return await this.model.findByIdAndUpdate(id, data, { new: true });
   }
 
   async delete(id: string): Promise<T | null> {
-    return await this.model.findByIdAndDelete(id)
+    return await this.model.findByIdAndDelete(id);
   }
 
   async startTransaction() {
-    const session = await this.dbService.getConnection().startSession()
-    session.startTransaction()
-    return session
+    const session = await this.dbService.getConnection().startSession();
+    session.startTransaction();
+    return session;
   }
   async commitTransaction(session: ClientSession) {
-    await session.commitTransaction()
-    session.endSession()
+    await session.commitTransaction();
+    session.endSession();
   }
 
   async abortTransaction(session: ClientSession) {
-    await session.abortTransaction()
-    session.endSession()
+    await session.abortTransaction();
+    session.endSession();
   }
 }
 
-export default BaseRepository
+export default BaseRepository;

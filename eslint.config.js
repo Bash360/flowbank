@@ -1,5 +1,5 @@
-import eslintPlugin from '@typescript-eslint/eslint-plugin'
-import eslintParser from '@typescript-eslint/parser'
+import eslintPlugin from '@typescript-eslint/eslint-plugin';
+import eslintParser from '@typescript-eslint/parser';
 
 /** @type {import("eslint").Linter.FlatConfig[]} */
 export default [
@@ -18,4 +18,4 @@ export default [
       quotes: ['error', 'double'],
     },
   },
-]
+];

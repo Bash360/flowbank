@@ -1,15 +1,15 @@
-import ExampleRepository from '../repositories/example.repository'
-import { Example } from '../model/example.model'
+import ExampleRepository from '../repositories/example.repository';
+import { Example } from '../model/example.model';
 
 class ExampleService {
-  exampleRepository: ExampleRepository
+  exampleRepository: ExampleRepository;
   constructor({ exampleRepository }: { exampleRepository: ExampleRepository }) {
-    this.exampleRepository = exampleRepository
+    this.exampleRepository = exampleRepository;
   }
 
   async getExample(id: string): Promise<Example> {
-    return this.exampleRepository.findById(id)
+    return this.exampleRepository.findById(id);
   }
 }
 
-export default ExampleService
+export default ExampleService;
