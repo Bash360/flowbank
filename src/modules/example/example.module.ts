@@ -5,6 +5,6 @@ import ExampleRepository from './repositories/example.repository'
 export default function registerExampleModule(container) {
   container.register({
     exampleService: asClass(ExampleService).scoped(),
-    exampleRepository: asClass(ExampleRepository).scoped(),
+    exampleRepository: asClass(ExampleRepository).singleton(),
   })
 }
