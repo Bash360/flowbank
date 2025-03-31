@@ -1,9 +1,9 @@
 export class StandardResponse<T> {
-  statusCode: number
-  Result: T | null
+  statusCode: number;
+  Result: T | null;
 
   constructor(statusCode: number, data: T | null = null) {
-    this.statusCode = statusCode
-    this.Result = data
+    this.statusCode = statusCode;
+    this.Result = data;
   }
 }
