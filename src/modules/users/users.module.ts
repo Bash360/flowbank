@@ -1,6 +1,6 @@
 import { asClass, Lifetime } from 'awilix';
-import ExampleService from './services/example.service';
-import ExampleRepository from './repositories/example.repository';
+import ExampleService from './services/users.service';
+import ExampleRepository from './repositories/users.repository';
 
 export default function registerExampleModule(container) {
   container.register({

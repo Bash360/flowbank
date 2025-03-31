@@ -1,5 +1,4 @@
 import mongoose, { Connection } from 'mongoose';
-import container from '../container';
 import { Logger } from 'winston';
 
 export class DatabaseService {
