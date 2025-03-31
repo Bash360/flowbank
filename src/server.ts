@@ -1,4 +1,3 @@
-import { loadControllers } from 'awilix-express';
 import app from './app';
 import container from './container';
 
@@ -7,8 +6,6 @@ import container from './container';
   const logger = container.resolve('logger');
   const PORT = config.PORT || 3000;
   const databaseService = container.resolve('databaseService');
-  const utils = container.resolve('utils');
-  const { basePath, fileExtension } = utils.getNodeEnvPath(config.NODE_ENV);
 
   await databaseService.connect();
   logger.info('Data Base has been initialized!');
@@ -16,10 +13,4 @@ import container from './container';
   app.listen(PORT, () => {
     logger.info(`Server is running on port ${PORT}`);
   });
-  app.use(
-    '/api/v1',
-    loadControllers(
-      `${basePath}/modules/**/controllers/*.controller.${fileExtension}`
-    )
-  );
 })();

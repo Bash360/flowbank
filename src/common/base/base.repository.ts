@@ -1,4 +1,4 @@
-import { ClientSession, Model } from 'mongoose';
+import { ClientSession, FilterQuery, Model } from 'mongoose';
 import { DatabaseService } from '../../database/database.service';
 import BaseModel from './base.model';
 
@@ -45,6 +45,11 @@ abstract class BaseRepository<T extends BaseModel> {
   async abortTransaction(session: ClientSession) {
     await session.abortTransaction();
     session.endSession();
+  }
+
+  async findBy<K extends keyof T>(key: K, value: T[K]): Promise<T | null> {
+    const query = { [key]: value } as FilterQuery<T>;
+    return this.model.findOne(query).exec();
   }
 }
 

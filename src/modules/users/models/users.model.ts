@@ -5,12 +5,14 @@ import BaseModel, { applyBaseSchema } from '../../../common/base/base.model';
 export interface User extends BaseModel {
   password: string;
   email: string;
+  name: string;
 }
 
 const UserSchema = new Schema<User>(
   {
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
+    name: { type: String, required: true },
   },
   { timestamps: true }
 );
