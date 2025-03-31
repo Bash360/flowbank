@@ -2,24 +2,16 @@ import { createContainer, asClass, asFunction, asValue, Lifetime } from 'awilix'
 import env from './config/env.config'
 import logger from './config/logger'
 import { DatabaseService } from './database/database.service'
-import ExampleRepository from './modules/example/example.repository'
-import ExampleService from './modules/example/example.service'
+import Utils from './common/helpers/utils'
+import registerExampleModule from './modules/example/example.module'
 
 const container = createContainer()
 
 container.register({
   databaseService: asClass(DatabaseService).singleton(),
-  exampleRepository: asClass(ExampleRepository).singleton(),
-  exampleService: asClass(ExampleService).scoped(),
   config: asValue(env),
   logger: asValue(logger),
+  utils: asValue(Utils),
 })
-
-container.loadModules(['modules/**/*.controller.ts'], {
-  formatName: 'camelCase',
-  resolverOptions: {
-    lifetime: 'SCOPED',
-  },
-})
-
+registerExampleModule(container)
 export default container

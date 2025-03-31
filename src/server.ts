@@ -1,6 +1,6 @@
+import { loadControllers } from 'awilix-express'
 import app from './app'
 import container from './container'
-
 ;(async () => {
   const config = container.resolve('config')
   const logger = container.resolve('logger')
@@ -9,7 +9,9 @@ import container from './container'
 
   await databaseService.connect()
   logger.info('Data Base has been initialized!')
+
   app.listen(PORT, () => {
     logger.info(`Server is running on port ${PORT}`)
   })
+  app.use(loadControllers('src/modules/**/controllers/*.controller.ts'))
 })()

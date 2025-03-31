@@ -1,5 +1,5 @@
-import ExampleRepository from './example.repository'
-import { Example } from './model/example.model'
+import ExampleRepository from '../repositories/example.repository'
+import { Example } from '../model/example.model'
 
 class ExampleService {
   exampleRepository: ExampleRepository
