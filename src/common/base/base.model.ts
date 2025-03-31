@@ -1,8 +1,8 @@
-import { Document, Schema } from 'mongoose'
+import { Document, Schema } from 'mongoose';
 
 export default abstract class BaseModel extends Document {
-  createdAt!: Date
-  updatedAt!: Date
+  createdAt!: Date;
+  updatedAt!: Date;
 }
 
 export function applyBaseSchema<T>(schema: Schema<T>) {
@@ -10,8 +10,8 @@ export function applyBaseSchema<T>(schema: Schema<T>) {
     virtuals: true,
     versionKey: false,
     transform: (_, ret) => {
-      ret.id = ret._id
-      delete ret._id
+      ret.id = ret._id;
+      delete ret._id;
     },
-  })
+  });
 }
