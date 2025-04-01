@@ -6,8 +6,8 @@ import IAuthService from '../interface/authService.interface';
 import Payload from '../types/payload.type';
 
 export default class AuthService implements IAuthService {
-  usersRepository: UsersRepository;
-  config: any;
+  private usersRepository: UsersRepository;
+  private config: any;
   constructor({
     usersRepository,
     config,

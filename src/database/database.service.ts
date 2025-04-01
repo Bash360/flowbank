@@ -3,8 +3,8 @@ import { Logger } from 'winston';
 
 export class DatabaseService {
   private connection!: Connection;
-  logger: Logger;
-  config: any;
+  private logger: Logger;
+  private config: any;
   constructor({ logger, config }: { logger: Logger; config: any }) {
     this.logger = logger;
     this.config = config;

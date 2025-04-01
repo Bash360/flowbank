@@ -1,4 +1,4 @@
-import { ClientSession, FilterQuery, Model } from 'mongoose';
+import mongoose, { ClientSession, FilterQuery, Model } from 'mongoose';
 import { DatabaseService } from '../../database/database.service';
 import BaseModel from './base.model';
 
@@ -12,24 +12,36 @@ abstract class BaseRepository<T extends BaseModel> {
     this.model = model;
   }
 
-  async findAll(): Promise<T[]> {
-    return await this.model.find();
+  async findAll(session?: ClientSession): Promise<T[]> {
+    return await this.model.find().session(session || null);
   }
 
-  async findById(id: string): Promise<T | null> {
-    return await this.model.findById(id);
+  async findById(
+    id: mongoose.Types.ObjectId,
+    session?: ClientSession
+  ): Promise<T | null> {
+    return await this.model.findById(id).session(session || null);
   }
 
-  async create(data: Partial<T>): Promise<T> {
-    return await this.model.create(data);
+  async create(data: Partial<T>, session?: ClientSession): Promise<T> {
+    return await this.model
+      .create([{ ...data }], { session })
+      .then((res) => res[0]);
   }
 
-  async update(id: string, data: Partial<T>): Promise<T | null> {
-    return await this.model.findByIdAndUpdate(id, data, { new: true });
+  async update(
+    id: string,
+    data: Partial<T>,
+    session?: ClientSession
+  ): Promise<T | null> {
+    return await this.model.findByIdAndUpdate(id, data, { new: true, session });
   }
 
-  async delete(id: string): Promise<T | null> {
-    return await this.model.findByIdAndDelete(id);
+  async delete(
+    id: mongoose.Types.ObjectId,
+    session?: ClientSession
+  ): Promise<T | null> {
+    return await this.model.findByIdAndDelete(id).session(session || null);
   }
 
   async startTransaction() {
@@ -47,9 +59,48 @@ abstract class BaseRepository<T extends BaseModel> {
     session.endSession();
   }
 
-  async findBy<K extends keyof T>(key: K, value: T[K]): Promise<T | null> {
+  async findBy<K extends keyof T>(
+    key: K,
+    value: T[K],
+    session?: ClientSession
+  ): Promise<T | null> {
     const query = { [key]: value } as FilterQuery<T>;
-    return this.model.findOne(query).exec();
+    return this.model
+      .findOne(query)
+      .session(session || null)
+      .exec();
+  }
+
+  async findByAll<K extends keyof T>(
+    key: K,
+    value: T[K],
+    session?: ClientSession
+  ): Promise<T[]> {
+    const query = { [key]: value } as FilterQuery<T>;
+    return this.model
+      .find(query)
+      .session(session || null)
+      .exec();
+  }
+
+  async findByFields(
+    fields: Partial<T>,
+    session?: ClientSession
+  ): Promise<T[]> {
+    return this.model
+      .find(fields as FilterQuery<T>)
+      .session(session || null)
+      .exec();
+  }
+
+  async findOneByFields(
+    fields: Partial<T>,
+    session?: ClientSession
+  ): Promise<T | null> {
+    return this.model
+      .findOne(fields as FilterQuery<T>)
+      .session(session || null)
+      .exec();
   }
 }
 

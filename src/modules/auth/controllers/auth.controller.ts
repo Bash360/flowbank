@@ -8,8 +8,8 @@ import { StandardResponse } from '../../../common/response';
 
 @route('/auth')
 export default class AuthController {
-  authService: IAuthService;
-  utils: any;
+  private authService: IAuthService;
+  private utils: any;
   constructor({
     authService,
     utils,
@@ -28,7 +28,7 @@ export default class AuthController {
     try {
       const { email, password } = req.body;
       const token: string = await this.authService.login(email, password);
-         return res.status(200).json({ token });
+      return res.status(200).json({ token });
     } catch (error) {
       next(error);
     }
@@ -44,7 +44,7 @@ export default class AuthController {
         email,
         password
       );
-      return res.status(201).json({token});
+      return res.status(201).json({ token });
     } catch (error) {
       next(error);
     }
