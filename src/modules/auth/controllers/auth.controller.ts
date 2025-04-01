@@ -4,7 +4,6 @@ import validateDto from '../../../common/middleware/validate-dto';
 import LoginDto from '../dtos/login.dto';
 import SignupDto from '../dtos/signup.dto';
 import IAuthService from '../interface/authService.interface';
-import { StandardResponse } from '../../../common/response';
 
 @route('/auth')
 export default class AuthController {

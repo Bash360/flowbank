@@ -6,23 +6,20 @@ import TransactionType from '../types/transaction.enum';
 export interface Transaction extends BaseModel {
   type: TransactionType;
   amount: number;
-  creditAccount: mongoose.Types.ObjectId;
-  debitAccount: mongoose.Types.ObjectId;
+  account: mongoose.Types.ObjectId;
   currency: Currency;
+  reference: string;
 }
 
 const TransactionSchema = new Schema<Transaction>(
   {
-    creditAccount: {
+    account: {
       type: Schema.Types.ObjectId,
       ref: 'Account',
       required: true,
     },
-    debitAccount: {
-      type: Schema.Types.ObjectId,
-      ref: 'Account',
-      required: true,
-    },
+    reference: { type: String, required: true },
+
     amount: { type: Number, required: true },
     type: { type: String, enum: TransactionType, required: true },
     currency: { type: String, enum: Currency, required: true },

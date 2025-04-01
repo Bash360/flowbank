@@ -1,7 +1,6 @@
 enum TransactionType {
-  WITHDRAWAL = 'withdrawal',
-  DEPOSIT = 'deposit',
-  TRANSFER = 'transfer',
+  CREDIT = 'CREDIT',
+  DEBIT = 'DEBIT',
 }
 
 export default TransactionType;

@@ -84,7 +84,7 @@ abstract class BaseRepository<T extends BaseModel> {
   }
 
   async findByFields(
-    fields: Partial<T>,
+    fields: FilterQuery<T>,
     session?: ClientSession
   ): Promise<T[]> {
     return this.model
@@ -94,7 +94,7 @@ abstract class BaseRepository<T extends BaseModel> {
   }
 
   async findOneByFields(
-    fields: Partial<T>,
+    fields: FilterQuery<T>,
     session?: ClientSession
   ): Promise<T | null> {
     return this.model
