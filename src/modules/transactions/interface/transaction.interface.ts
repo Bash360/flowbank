@@ -1,15 +1,19 @@
-import TransactionDto from '../dtos/transactions.dto';
-import { Transaction } from '../models/transactions.model';
-import TransactionType from '../types/transaction.enum';
+import mongoose from 'mongoose';
+import DepositDto from '../dtos/deposit.dto';
+import TransferDto from '../dtos/transfer.dto';
+import WithdrawalDto from '../dtos/withdrawal.dto';
 
 export default interface ITransaction {
-  withdrawal(transactionDto: TransactionDto): Promise<Transaction>;
+  withdrawal(
+    userId: mongoose.Types.ObjectId,
+    withdrawal: WithdrawalDto
+  ): Promise<string>;
   transfer(
-    transactionDto: TransactionDto,
-    transactionType: TransactionType
-  ): Promise<Transaction>;
+    userId: mongoose.Types.ObjectId,
+    transfer: TransferDto
+  ): Promise<string>;
   deposit(
-    transactionDto: TransactionDto,
-    transactionType: TransactionType
-  ): Promise<Transaction>;
+    userId: mongoose.Types.ObjectId,
+    deposit: DepositDto
+  ): Promise<string>;
 }

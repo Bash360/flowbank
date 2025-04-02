@@ -5,8 +5,10 @@ const {
   DB_URI,
   NODE_ENV,
   JWT_SECRET,
-  FLOW_BANK_USD_ACCOUNT,
-  FLOW_BANK_NGN_ACCOUNT,
+  USD_RESERVE,
+  NGN_RESERVE,
+  ADMIN_PASSWORD,
+  ADMIN_EMAIL,
 } = process.env;
 
 const ENV = Object.freeze({
@@ -14,8 +16,10 @@ const ENV = Object.freeze({
   NODE_ENV,
   DB_URI,
   JWT_SECRET,
-  FLOW_BANK_USD_ACCOUNT,
-  FLOW_BANK_NGN_ACCOUNT,
+  USD_RESERVE,
+  NGN_RESERVE,
+  ADMIN_PASSWORD,
+  ADMIN_EMAIL,
 });
 
 if (!ENV.DB_URI) {
