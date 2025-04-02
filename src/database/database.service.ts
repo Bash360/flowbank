@@ -1,4 +1,4 @@
-import mongoose, { Connection } from 'mongoose';
+import mongoose, { Connection, ConnectOptions } from 'mongoose';
 import { Logger } from 'winston';
 
 export class DatabaseService {
@@ -9,13 +9,15 @@ export class DatabaseService {
     this.logger = logger;
     this.config = config;
   }
+
   async connect() {
-    const db = await mongoose.connect(this.config.DB_URI, {
+    const options: ConnectOptions = {
       maxPoolSize: 10,
       minPoolSize: 5,
       serverSelectionTimeoutMS: 5000,
       socketTimeoutMS: 45000,
-    });
+    } as ConnectOptions;
+    const db = await mongoose.connect(this.config.DB_URI, options);
     this.connection = db.connection;
     this.logger.info('MongoDB Connected with Connection Pooling...');
   }
