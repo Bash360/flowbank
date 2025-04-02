@@ -1,8 +1,6 @@
-import mongoose from 'mongoose';
-
 export default class TransactionDto {
-  debitAccountId: mongoose.Types.ObjectId;
-  creditAccountId: mongoose.Types.ObjectId;
+  debitAccountId: string;
+  creditAccountId: string;
   amount: number;
   reference: string;
 }

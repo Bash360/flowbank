@@ -1,11 +1,4 @@
-import {
-  IsDecimal,
-  IsEnum,
-  IsNumber,
-  IsPositive,
-  IsString,
-  Min,
-} from 'class-validator';
+import { IsEnum, IsNumber, IsPositive, IsUUID, Min } from 'class-validator';
 import Currency from '../../accounts/types/currency.enum';
 
 export default abstract class SharedDto {
@@ -15,6 +8,6 @@ export default abstract class SharedDto {
   amount: number;
   @IsEnum(Currency)
   currency: Currency;
-  @IsString()
+  @IsUUID()
   reference: string;
 }

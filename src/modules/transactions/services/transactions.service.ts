@@ -141,11 +141,11 @@ export default class TransactionsService implements ITransaction {
 
     try {
       const creditAccount = await this.accountsRepository.findById(
-        creditAccountId,
+        new mongoose.Types.ObjectId(creditAccountId),
         session
       );
       const debitAccount = await this.accountsRepository.findById(
-        debitAccountId,
+        new mongoose.Types.ObjectId(debitAccountId),
         session
       );
 
