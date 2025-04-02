@@ -9,6 +9,8 @@ class AppError extends Error {
 
     if (Error.captureStackTrace) {
       Error.captureStackTrace(this, AppError);
+    } else {
+      this.stack = new Error().stack;
     }
   }
 }
