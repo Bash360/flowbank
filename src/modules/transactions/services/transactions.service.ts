@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import { Logger } from 'winston';
 import AppError from '../../../common/base/app-error';
+import { DatabaseService } from '../../../database/database.service';
 import AccountsRepository from '../../accounts/repositories/accounts.repository';
 import Currency from '../../accounts/types/currency.enum';
 import DepositDto from '../dtos/deposit.dto';
@@ -18,25 +19,29 @@ export default class TransactionsService implements ITransaction {
   private logger: Logger;
   private utils: any;
   private accountsRepository: AccountsRepository;
-
+  private dbService: DatabaseService;
   constructor({
     config,
     transactionsRepository,
     logger,
     utils,
     accountsRepository,
+
+    databaseService,
   }: {
     config: any;
     transactionsRepository: TransactionsRepository;
     logger: Logger;
     utils: any;
     accountsRepository: AccountsRepository;
+    databaseService: DatabaseService;
   }) {
     this.config = config;
     this.logger = logger;
     this.transactionsRepository = transactionsRepository;
     this.utils = utils;
     this.accountsRepository = accountsRepository;
+    this.dbService = databaseService;
   }
   async transfer(
     userId: mongoose.Types.ObjectId,
@@ -64,6 +69,9 @@ export default class TransactionsService implements ITransaction {
       user: userId,
       currency,
     });
+    if (userAccount.balance < amount) {
+      throw new AppError('insufficient funds for withdrawal', 400);
+    }
     const creditAccountId =
       currency === Currency.NGN
         ? this.config['NGN_RESERVE']
@@ -127,7 +135,9 @@ export default class TransactionsService implements ITransaction {
     if (referenceExists) {
       throw new AppError('reference must be unique', 400);
     }
-    const session = await this.transactionsRepository.startTransaction();
+
+    const session = await this.dbService.getConnection().startSession();
+    session.startTransaction();
 
     try {
       const creditAccount = await this.accountsRepository.findById(
@@ -178,10 +188,12 @@ export default class TransactionsService implements ITransaction {
         session
       );
 
-      await this.transactionsRepository.commitTransaction(session);
+      await session.commitTransaction();
+      session.endSession();
       return 'Transaction successful';
     } catch (error) {
-      await this.transactionsRepository.abortTransaction(session);
+      await session.abortTransaction();
+      session.endSession();
       this.logger.error(error);
       throw new AppError(error.message, 400);
     }

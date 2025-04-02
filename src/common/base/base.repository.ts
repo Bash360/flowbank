@@ -1,14 +1,10 @@
 import mongoose, { ClientSession, FilterQuery, Model } from 'mongoose';
-import { DatabaseService } from '../../database/database.service';
 import BaseModel from './base.model';
 
 abstract class BaseRepository<T extends BaseModel> {
   protected model: Model<T>;
 
-  constructor(
-    model: Model<T>,
-    private readonly dbService: DatabaseService
-  ) {
+  constructor(model: Model<T>) {
     this.model = model;
   }
 
@@ -42,21 +38,6 @@ abstract class BaseRepository<T extends BaseModel> {
     session?: ClientSession
   ): Promise<T | null> {
     return await this.model.findByIdAndDelete(id).session(session || null);
-  }
-
-  async startTransaction() {
-    const session = await this.dbService.getConnection().startSession();
-    session.startTransaction();
-    return session;
-  }
-  async commitTransaction(session: ClientSession) {
-    await session.commitTransaction();
-    session.endSession();
-  }
-
-  async abortTransaction(session: ClientSession) {
-    await session.abortTransaction();
-    session.endSession();
   }
 
   async findBy<K extends keyof T>(

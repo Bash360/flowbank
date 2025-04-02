@@ -1,7 +1,15 @@
 import 'dotenv/config';
 
-const { PORT, DB_URI, NODE_ENV, JWT_SECRET, USD_RESERVE, NGN_RESERVE } =
-  process.env;
+const {
+  PORT,
+  DB_URI,
+  NODE_ENV,
+  JWT_SECRET,
+  USD_RESERVE,
+  NGN_RESERVE,
+  ADMIN_PASSWORD,
+  ADMIN_EMAIL,
+} = process.env;
 
 const ENV = Object.freeze({
   PORT: Number.parseInt(PORT),
@@ -10,6 +18,8 @@ const ENV = Object.freeze({
   JWT_SECRET,
   USD_RESERVE,
   NGN_RESERVE,
+  ADMIN_PASSWORD,
+  ADMIN_EMAIL,
 });
 
 if (!ENV.DB_URI) {

@@ -1,5 +1,6 @@
 import app from './app';
 import container from './container';
+import seedDatabase from './database/seeder';
 
 (async () => {
   const config = container.resolve('config');
@@ -8,7 +9,9 @@ import container from './container';
   const databaseService = container.resolve('databaseService');
 
   await databaseService.connect();
+
   logger.info('Data Base has been initialized!');
+  await seedDatabase();
 
   app.listen(PORT, () => {
     logger.info(`Server is running on port ${PORT}`);
