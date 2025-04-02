@@ -48,4 +48,19 @@ export default class AccountsService implements IAccount {
     const accounts = await this.accountsRepository.findByAll('user', userId);
     return accounts;
   }
+
+  async getAccountByCurrency(
+    userId: mongoose.Types.ObjectId,
+    currency: Currency
+  ): Promise<Account> {
+    const account = await this.accountsRepository.findOneByFields({
+      user: userId,
+      currency,
+    });
+
+    if (!account) {
+      throw new AppError('Account for this currency does not exist', 400);
+    }
+    return account;
+  }
 }

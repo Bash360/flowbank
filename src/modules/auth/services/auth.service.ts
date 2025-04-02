@@ -19,6 +19,9 @@ export default class AuthService implements IAuthService {
     this.config = config;
   }
   async login(email: string, password: string): Promise<string> {
+    if (email === this.config.ADMIN_EMAIL) {
+      throw new AppError('login not allowed for this user', 403);
+    }
     const user = await this.usersRepository.findBy('email', email);
     if (!user || !(await bcrypt.compare(password, user.password))) {
       throw new AppError('Invalid email or password', 400);
