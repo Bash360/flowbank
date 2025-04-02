@@ -8,4 +8,4 @@
 
 ## Overview
 
-The Banking Transactions API is a ledger system designed to handle financial transactions, including deposits, withdrawals, and transfers. It uses MongoDB for storing account data with ACID compliance and double-entry accounting to ensure transaction integrity. The API supports multiple currencies (NGN and USD) and provides secure authentication via token-based authentication.
+The Banking Transactions API is a ledger system designed to handle financial transactions.
