@@ -137,9 +137,9 @@ export default class TransactionsService implements ITransaction {
     }
 
     const session = await this.dbService.getConnection().startSession();
-    session.startTransaction();
 
     try {
+      session.startTransaction();
       const creditAccount = await this.accountsRepository.findById(
         new mongoose.Types.ObjectId(creditAccountId),
         session
