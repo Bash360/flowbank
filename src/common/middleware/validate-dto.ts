@@ -9,7 +9,12 @@ function validateDto<T>(DtoClass: new () => T) {
       const errors = await validate(dtoInstance as object);
 
       if (errors.length > 0) {
-        return res.status(400).json(errors);
+        const errs = errors.flatMap((error) => {
+          if (error.constraints) {
+            return Object.values(error.constraints);
+          }
+        });
+        return res.status(400).json(errs);
       }
 
       next();
