@@ -8,12 +8,15 @@ import seedDatabase from './database/seeder';
   const PORT = config.PORT || 3000;
   const databaseService = container.resolve('databaseService');
 
+  logger.info(`process started on ${process.pid}`);
   await databaseService.connect();
-
-  logger.info('Data Base has been initialized!');
   await seedDatabase();
-
   app.listen(PORT, () => {
-    logger.info(`Server is running on port ${PORT}`);
+    logger.info(`Application is running on port ${PORT}`);
+  });
+  process.on('exit', async (code: number) => {
+    logger.info(`Process ${process.pid} exited with ${code}`);
+
+    await databaseService.closeConnection();
   });
 })();

@@ -4,14 +4,18 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "strict": false,
+    "baseUrl": "./",
     "esModuleInterop": true,
     "experimentalDecorators": true, // Must be true to use decorators
     "emitDecoratorMetadata": true, // Must be true to use decorators with TypeORM
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "./dist",
+    "outDir": "./dist/src",
     "rootDir": "./src",
-      "types": ["node"]
+      "types": ["node", "jest"],
+      "paths": {
+"*":["node_modules/*", "src/*"]
+      }
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
