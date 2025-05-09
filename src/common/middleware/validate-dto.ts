@@ -14,7 +14,6 @@ function validateDto<T>(DtoClass: new () => T) {
             return Object.values(error.constraints);
           }
         });
-        // better errors
         return res.status(400).json(errorsArr);
       }
 
