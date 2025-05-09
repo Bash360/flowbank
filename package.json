@@ -4,7 +4,7 @@
   "description": "Flowbank API Service",
   "main": "server.ts",
   "scripts": {
-    "start": "node dist/server.js",
+    "start": "node dist/src/server.js",
     "build": "tsc",
     "dev": "ts-node  --respawn --transpile-only src/server.ts",
     "test": "jest",
