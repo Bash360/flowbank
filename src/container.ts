@@ -15,7 +15,6 @@ container.register({
 const utils = container.resolve('utils');
 const config = container.resolve('config');
 const { basePath, fileExtension } = utils.getNodeEnvPath(config.NODE_ENV);
-
 container.loadModules(
   [`${basePath}/modules/**/repositories/*.${fileExtension}`],
   {
