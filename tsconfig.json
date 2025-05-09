@@ -12,7 +12,7 @@
     "forceConsistentCasingInFileNames": true,
     "outDir": "./dist/src",
     "rootDir": "./src",
-      "types": ["node", "jest"],
+      "types": ["node"],
       "paths": {
 "*":["node_modules/*", "src/*"]
       }
