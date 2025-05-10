@@ -21,8 +21,7 @@ services:
     networks:
       - app-network
     volumes:
-      - ./dist:/app/dist
-    command: ['node', 'dist/server.js']
+      - ./src:/app/src
 
 volumes:
   mongo_data:
