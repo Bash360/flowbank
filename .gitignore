@@ -75,15 +75,12 @@ Thumbs.db
 # Go module cache
 go.sum
 
-# Pulumi artifacts
-Pulumi.*.yaml          # Stack configs (but keep if you want to version non-secret parts)
 Pulumi.yaml.lock       # Dependency lock
 __pycache__/
 .venv/
 
 # Pulumi state
 *.pulumi
-pulumi.*
 .pulumi/
 
 
