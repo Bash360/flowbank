@@ -6,3 +6,5 @@ dockerfile
 .dockerignore
 .git
 __tests__
+coverage
+logs

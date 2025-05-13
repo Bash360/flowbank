@@ -49,3 +49,40 @@ coverage/
 *.swp
 *.swo
 Thumbs.db
+
+bin/
+*.exe
+*.out
+*.test
+*.log
+
+Thumbs.db
+
+
+/bin/
+/obj/
+/vendor/
+/*.exe
+/*.exe~
+/*.dll
+/*.so
+/*.dylib
+/*.test
+*.out
+*.o
+*.a
+
+# Go module cache
+go.sum
+
+Pulumi.yaml.lock       # Dependency lock
+__pycache__/
+.venv/
+
+# Pulumi state
+*.pulumi
+.pulumi/
+
+
+# Logs
+*.log
