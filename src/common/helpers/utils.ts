@@ -13,7 +13,7 @@ class Utils {
         fileExtension: 'ts',
       },
       production: {
-        basePath: 'dist',
+        basePath: 'dist/src',
         fileExtension: 'js',
       },
     };

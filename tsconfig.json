@@ -6,16 +6,16 @@
     "strict": false,
     "baseUrl": "./",
     "esModuleInterop": true,
-    "experimentalDecorators": true, // Must be true to use decorators
-    "emitDecoratorMetadata": true, // Must be true to use decorators with TypeORM
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "outDir": "./dist/src",
     "rootDir": "./src",
-      "types": ["node", "jest"],
-      "paths": {
-"*":["node_modules/*", "src/*"]
-      }
+    "types": ["node"],
+    "paths": {
+      "*": ["node_modules/*", "src/*"]
+    }
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
