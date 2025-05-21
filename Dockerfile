@@ -5,12 +5,10 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install --production
+RUN npm install --production && npm run build
 
 COPY dist ./dist
 
-
-RUN npm run build
 
 EXPOSE 3000
 
