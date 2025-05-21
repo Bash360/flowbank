@@ -5,10 +5,11 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install --production && npm run build
+COPY tsconfig.json ./
 
-COPY dist ./dist
+COPY src ./src
 
+RUN npm install && npm run build && rm -rf ./src && npm prune --production && npm cache clean --force 
 
 EXPOSE 3000
 
