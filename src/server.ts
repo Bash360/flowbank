@@ -15,7 +15,7 @@ import seedDatabase from './database/seeder';
     logger.info(`Application is running on port ${PORT}`);
   });
   process.on('exit', async (code: number) => {
-    logger.info(`Process ${process.pid} exited with ${code}`);
+    logger.info(`Process id: ${process.pid} exited with ${code}`);
 
     await databaseService.closeConnection();
   });
