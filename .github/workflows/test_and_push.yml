@@ -58,9 +58,9 @@ jobs:
               password: ${{ secrets.TOKEN }}
 
         - name: Build Docker image
-          run: docker build -t ghcr.io/${{ github.repository }}:latest .
+          run: docker build -t ghcr.io/bash360/${{ github.repository }}:latest .
         
         - name: Push Docker image
-          run: docker push ghcr.io/${{ github.repository }}:latest
+          run: docker push ghcr.io/bash360/${{ github.repository }}:latest
   
 
