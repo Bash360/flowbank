@@ -1,8 +1,14 @@
 node_modules
-dist
 *.log
 *.env
 dockerfile
 .dockerignore
 .git
 __tests__
+coverage
+logs
+
+.vscode
+.DS_Store
+.github
+

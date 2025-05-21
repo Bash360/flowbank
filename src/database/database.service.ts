@@ -34,7 +34,7 @@ export class DatabaseService {
   getConnection(): Connection {
     if (!this.connection) {
       this.logger.error('DataBase not connecting');
-      throw new Error(`database not connected on worker ${process.pid}`);
+      throw new Error(`database not connected on worker`);
     }
     return this.connection;
   }
