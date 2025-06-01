@@ -94,6 +94,13 @@ export default class TransactionsService implements ITransaction {
       user: userId,
       currency,
     });
+    if (!userAccount) {
+      throw new AppError(
+        `${currency} account type must exist before attempting to deposit in it`,
+        400
+      );
+    }
+
     const debitAccountId =
       currency === Currency.NGN
         ? this.config['NGN_RESERVE']
