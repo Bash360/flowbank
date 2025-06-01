@@ -4,6 +4,7 @@ import morgan from 'morgan';
 import 'reflect-metadata';
 import errorHandler from './common/middleware/error-handler';
 import container from './container';
+import './otel';
 
 const logger = container.resolve('logger');
 const app = express();
@@ -16,7 +17,7 @@ const morganStream = {
   },
 };
 
-app.use(morgan('dev', { stream: morganStream }));
+app.use(morgan('combined', { stream: morganStream }));
 app.use(express.json());
 app.use(scopePerRequest(container));
 
