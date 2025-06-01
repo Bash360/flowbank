@@ -9,6 +9,7 @@ const {
   NGN_RESERVE,
   ADMIN_PASSWORD,
   ADMIN_EMAIL,
+  SCRAPE_PORT,
 } = process.env;
 
 const ENV = Object.freeze({
@@ -20,6 +21,7 @@ const ENV = Object.freeze({
   NGN_RESERVE,
   ADMIN_PASSWORD,
   ADMIN_EMAIL,
+  SCRAPE_PORT,
 });
 
 if (!ENV.DB_URI) {
